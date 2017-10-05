@@ -1,19 +1,20 @@
 # pdfrename
+
 Use this utility to rename the internal name of a PDF file without having to edit the file with a bespoke PDF editor, and without modifying the system file name either.
 
 Having the correct name of the document displayed in the PDF viewer avoids confusion. Many PDF download sites provide silly internal names to their PDF documents, so even thought the file is name "The Life and Times of Piet Pompies.pdf",
 when you open the file in your PDF reader, it shows some bollocks in the title like "A234GE7F", when you would expect it to show "The Life and Times of Piet Pompies" in your PDF reader.
 
-A PDF document that displays its title like this:
+A PDF document that displays its title in the PDF viewer like this:
 
 ![Not so great, actually](images/renamethissortofthing.png)
 
 
-...can be made to display it like this:
+...can be made to display it like this with a little help from this utility:
 
 ![Better](images/renamedtosomethingbetter.png)
 
-With this utility, you can bulk-rename entire directories of PDF files to their default file-system name, or you can also set you own internal PDF document title, which you might want to do if you want to embelish the internal title with the author or other publishing details.
+You can bulk-rename entire directories of PDF files to their default file-system name, or you can also set you own internal PDF document title, which you might want to do if you want to embelish the internal title with other attributes like the author or other publishing details.
 
 # Prerequisites:
 
@@ -28,9 +29,9 @@ You need to have the PDF Toolkit installed, a.k.a. "pdftk". Depending on your Li
 
     pdfrename PDF-file
 
-This simplest case: This takes the system file name and sets it as the internal name of the PDF document.
+This is the simplest case: This takes the system file name and sets it as the internal name of the PDF document.
 
-or
+Or if you want to add more or your own details to the document title, do this:
 
     pdfrename PDF-file "The Life and Times of Piet Pompies - Author: Koos Roos, Published 1957"
 
@@ -40,7 +41,7 @@ When you view this file in your PDF viewer, these additional details will also b
 
 Use regular expressions to save having to retype the name of the system file name if you want to add or remove text from the internal PDF document title:
 
-    pdfrename PDF-file -e ".* - Author: Koos Roos, Published 1957"
+    pdfrename PDF-file -e "\(.*\)" "\1 - Author: Koos Roos, Published 1957"
 
 This sets the PDF document title of the file "The Life and Times of Piet Pompies.pdf" to "The Life and Times of Piet Pompies - Author: Koos Roos, Published 1957". Use normal POSIX Basic RegEx (a.k.a. BRE) syntax and remember to use the "-e" option so that RegEx characters are treated as such and to avoid globbing.
 
