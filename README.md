@@ -32,7 +32,7 @@ You need to have the PDF Toolkit installed, a.k.a. "pdftk". Depending on your Li
 
 This is the simplest case: This takes the system file name and sets it as the internal name of the PDF document.
 
-Or if you want to add more or your own details to the document title, do this:
+Or if you want to add more details to the document title, do this:
 
     pdfrename PDF-file "The Life and Times of Piet Pompies - Author: Koos Roos, Published 1957"
 
@@ -44,9 +44,9 @@ Use regular expressions to save having to retype the name of the system file nam
 
     pdfrename PDF-file -e "\(.*\)" "\1 - Author: Koos Roos, Published 1957"
 
-This sets the PDF document title of the file "The Life and Times of Piet Pompies.pdf" to "The Life and Times of Piet Pompies - Author: Koos Roos, Published 1957". Use normal POSIX Basic RegEx (a.k.a. BRE) syntax and remember to use the "-e" option so that RegEx characters are treated as such and to avoid globbing.
+This sets the PDF document title of the file "The Life and Times of Piet Pompies.pdf" to "The Life and Times of Piet Pompies - Author: Koos Roos, Published 1957". Use normal POSIX Basic RegEx (a.k.a. BRE) syntax and remember to use the "-e" option so that RegEx characters are treated as such to avoid file globbing.
 
-To correct all the PDF files in your current working directory to so that they each display their respective system file name, do this to un-taint your collection of PDF books once you have set the correct system file name for each one:
+To correct all PDF files in your current working directory so that they each display their respective system file name, do this to un-taint your collection of PDF books once you have set the correct system file name for each one:
 
     find . -name "*.pdf" -exec pdfrename {} \; -print
 
